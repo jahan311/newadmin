@@ -234,7 +234,7 @@ em {
   background: #eef2f7;
 }
 .login.bg {
-  background: url("/public/assets/img/img_login_bg.jpg") no-repeat center;
+  background: url("../../../public/assets/img/img_login_bg.jpg") no-repeat center;
   background-size: cover;
   -webkit-animation: bgZoom 5s ease-in-out forwards;
           animation: bgZoom 5s ease-in-out forwards;
@@ -370,18 +370,18 @@ em {
 
 @-webkit-keyframes bgZoom {
   0% {
-    background-size: 100%;
+    background-size: 120%;
   }
   100% {
-    background-size: 110%;
+    background-size: 140%;
   }
 }
 
 @keyframes bgZoom {
   0% {
-    background-size: 100%;
+    background-size: 120%;
   }
   100% {
-    background-size: 110%;
+    background-size: 140%;
   }
 }/*# sourceMappingURL=common.css.map */
