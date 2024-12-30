@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+/* images */
+@mixin image($name, $path: "/public/assets/img/", $format:"png", $bgXY:center, $bg:'',) {
+    background: #{$bg} url("#{$path}#{$name}.#{$format}") no-repeat $bgXY;
+}
+
+@mixin img_login_bg {
+    @include image($name:'img_login_bg', $format:"jpg");
+    background-size: cover;
+}

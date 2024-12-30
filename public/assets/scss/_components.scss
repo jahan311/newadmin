@@ -1,0 +1,206 @@
+@charset 'utf-8';
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+$font-name : 'Pretendard Variable';
+
+/* font */
+@mixin ftR {
+    font-family: $font-name;
+    font-weight: 400;
+}
+
+@mixin ftM {
+    font-family: $font-name;
+    font-weight: 500;
+}
+
+@mixin ftB {
+    font-family: $font-name;
+    font-weight: 700;
+}
+
+@mixin ftSize($size) {
+    @if $size=='sm' {
+        font-size: 10px;
+        letter-spacing: -0.25;
+    }
+
+    @else {
+        font-size: $size;
+    }
+}
+
+@mixin ellipsis($lines: 1) {
+    @if ($lines==1) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @else {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }
+}
+
+/* scroll */
+@mixin scroll {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $scroll-color;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+@mixin innerscroll($height) {
+    overflow-y: auto;
+    @include scroll;
+    max-height: $height;
+}
+
+@mixin ellipsis($lines: 1) {
+    @if ($lines==1) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @else {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }
+}
+
+/* layout */
+@mixin flex($align, $justify, $gap:0, $direction: row) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+    flex-direction: $direction;
+}
+
+@mixin centerX($type: absolute, $top: null, $bottom: null) {
+    @if($type==fixed or $type==absolute) {
+        position: $type;
+        left: 50%;
+        top: $top;
+        bottom: $bottom;
+        transform: translateX(-50%);
+    }
+}
+
+@mixin centerY($type: absolute, $left: null, $right: null) {
+    @if($type==fixed or $type==absolute) {
+        position: $type;
+        top: 50%;
+        left: $left;
+        right: $right;
+        transform: translateY(-50%);
+    }
+}
+
+@mixin centerXY($type: absolute) {
+    @if($type==fixed or $type==absolute) {
+        position: $type;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+/* components */
+@mixin content($display: inline-block) {
+    content: '';
+    display: $display;
+}
+
+@mixin button($width: null, $height: null, $radius: null, $size: null) {
+    @if $size == 'lg' {
+        height: 56px;
+        font-size: 18px;
+    } @else if $size == 'md' {
+        height: 48px;
+        font-size: 16px;
+    } @else if $size == 'sm' {
+        height: 36px;
+        font-size: 12px;
+    } @else {
+        height: $height;
+        font-size: 14px;
+    }
+
+    width: $width;
+    border-radius: $radius;
+    color: $white;
+    background: $point-color;
+    @include ftR;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+        color: $point-color;
+        border: 1px solid $point-color;
+        background: $white;
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+}
+
+@mixin input($width, $height, $radius) {
+    position: relative;
+    label {
+        @include ftB;
+        color: $point-color;
+    }
+
+    input {
+        width: $width;
+        height: $height;
+        border-radius: $radius;
+        padding: 8px 18px;
+        background: $white;
+        border: 1px solid $bd-input-color;
+        @include ftR;
+        color: $ft-main-color;
+        transition: all 0.5s ease-in-out;
+
+        &::placeholder {
+            color: $ft-input-ph-color;
+        }
+
+        &:focus {
+            border: 1px solid $point-color;
+        }
+
+        &:disabled,&:read-only {
+            background: $disabled-color;
+            cursor: default;
+        }
+    }
+}
